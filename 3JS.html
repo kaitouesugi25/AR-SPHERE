@@ -5,43 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
-  <title>AR Random Questions</title>
+  <title>Red Floating Sphere</title>
 </head>
 <body>
   <a-scene embedded arjs="trackingMethod: best;">
     <!-- Marker with a red floating sphere -->
     <a-marker preset="hiro" id="marker">
       <a-sphere position="0 1.25 -5" radius="1.25" color="#FF0000" animation__rotate="property: rotation; easing: linear; loop: true; to: 0 360 0; dur: 5000"></a-sphere>
-      <a-entity id="questionText" text="value: Hello! How was your day?; align: center; wrapCount: 20;"></a-entity>
     </a-marker>
 
     <a-camera-static></a-camera-static>
-
-    <script>
-      AFRAME.registerComponent('random-question', {
-        init: function () {
-          var questions = [
-            "How was your day?",
-            "What are you studying?",
-            "Tell me something interesting about yourself.",
-            // Add more questions as needed
-          ];
-
-          // Randomly select a question
-          var randomIndex = Math.floor(Math.random() * questions.length);
-          var randomQuestion = questions[randomIndex];
-
-          // Set the selected question as text
-          var textElement = document.querySelector('#questionText');
-          textElement.setAttribute('text', 'value: ' + randomQuestion + '; align: center; wrapCount: 20;');
-        }
-      });
-
-      // Attach the component to the marker when it is found
-      document.querySelector('#marker').addEventListener('markerFound', function () {
-        document.querySelector('#marker').setAttribute('random-question', '');
-      });
-    </script>
   </a-scene>
 </body>
 </html>
